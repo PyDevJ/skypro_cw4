@@ -19,12 +19,12 @@ class HeadHunterAPI(Api):
         """
         Конструктор с входным параметром количества вакансий.
         """
+        self.url = 'https://api.hh.ru/vacancies/'
         self.params = {
             'per_page': count,
             'area': 1,
             'page': 1
         }
-        self.url = 'https://api.hh.ru/vacancies/'
 
     def get_vacancies(self, words):
         """
@@ -43,15 +43,14 @@ class SuperJobAPI(Api):
         """
         Конструктор с входным параметром количества вакансий.
         """
-
         __api_token: str = os.getenv('SJ_API_KEY')
+        self.url = 'https://api.superjob.ru/2.0/vacancies/'
         self.headers = {"X-Api-App-Id": __api_token}
         self.params = {
             'count': count,
             'page': 1,
             'town': 'Moscow',
         }
-        self.url = 'https://api.superjob.ru/2.0/vacancies/'
 
     def get_vacancies(self, words):
         """
