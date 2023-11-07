@@ -56,7 +56,6 @@ def clear_json():
     Очищает файл vacancies.json
     """
     JsonAgent.clear_json()
-    print('Файл очищен')
 
 
 def show_info_by_title():
@@ -127,6 +126,7 @@ def show_top_n():
 
 
 if __name__ == "__main__":
+    clear_json()
     load_vacancies_to_json()
     show_vacancies_by_title()
     delete_vacancy_by_title()
@@ -135,4 +135,3 @@ if __name__ == "__main__":
     get_vacancies_by_salary()
     sort_vacancies_by_salary()
     show_top_n()
-    clear_json()

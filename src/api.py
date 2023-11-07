@@ -2,6 +2,7 @@ import json
 import os
 import requests
 from abc import ABC, abstractmethod
+from dotenv import load_dotenv
 
 
 class Api(ABC):
@@ -43,7 +44,8 @@ class SuperJobAPI(Api):
         """
         Конструктор с входным параметром количества вакансий.
         """
-        __api_token: str = os.getenv('SJ_API_KEY')
+        load_dotenv()
+        __api_token: str = os.environ.get("SJ_API_KEY")
         self.url = 'https://api.superjob.ru/2.0/vacancies/'
         self.headers = {"X-Api-App-Id": __api_token}
         self.params = {

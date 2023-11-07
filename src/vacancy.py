@@ -56,7 +56,19 @@ class Vacancy:
         print(self.requirement)
 
     def __repr__(self) -> str:
-        return f"{self.title}\n{self.pay}\n{self.url}\n{self.requirement}"
+        return f"{self.__class__.__name__}\n({self.title}\n{self.pay}\n{self.url}\n{self.requirement})"
+
+    def __eq__(self, other):
+        return self.pay == other.pay
+
+    def __ne__(self, other):
+        return self.pay != other.pay
+
+    def __lt__(self, other):
+        return self.pay < other.pay
+
+    def __gt__(self, other):
+        return self.pay > other.pay
 
 
 class VacancyAgent:
