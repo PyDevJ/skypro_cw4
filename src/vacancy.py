@@ -56,7 +56,7 @@ class Vacancy:
         print(self.requirement)
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}\n({self.title}\n{self.pay}\n{self.url}\n{self.requirement})"
+        return f"{self.__class__.__name__}\n({self.title}\n{self.url}\n{self.pay}\n{self.requirement})\n"
 
     def __eq__(self, other):
         return self.pay == other.pay
@@ -85,7 +85,7 @@ class VacancyAgent:
             elif vacancy['payment_to'] is not None:
                 tmp = Vacancy(vacancy['profession'], vacancy['link'], vacancy['payment_to'], vacancy['candidat'])
             else:
-                tmp = Vacancy(vacancy['profession'], vacancy['link'], '0', vacancy['candidat'])
+                tmp = Vacancy(vacancy['profession'], vacancy['link'], 0, vacancy['candidat'])
             output.append(tmp)
         return output
 
@@ -105,7 +105,7 @@ class VacancyAgent:
                     tmp = Vacancy(vacancy['name'], f'{url_hh_v}{vacancy["id"]}', vacancy['salary']['to'],
                                   vacancy['snippet']['requirement'])
             else:
-                tmp = Vacancy(vacancy['name'], f'{url_hh_v}{vacancy["id"]}', "0",
+                tmp = Vacancy(vacancy['name'], f'{url_hh_v}{vacancy["id"]}', 0,
                               vacancy['snippet']['requirement'])
             output.append(tmp)
         return output

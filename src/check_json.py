@@ -53,8 +53,7 @@ class JsonAgent:
 
             vacancies.append(vacancy.json())  # добавление вакансии в файл
             with open(FILE, 'w', encoding='utf-8') as f:
-                json.dump(vacancies, f, ensure_ascii=False)
-            # print("Вакансия успешно добавлена")
+                json.dump(vacancies, f, indent=4, ensure_ascii=False)
             return True
         else:
             print("Произошла ошибка при добавлении вакансии")
@@ -117,8 +116,7 @@ class JsonAgent:
         Метод, который выводит в консоль информацию о найденной по названию вакансии
         """
 
-        with open(FILE, 'r', encoding='utf-8') as f:
-            vacancies = Vacancy.all_from_json()
+        vacancies = Vacancy.all_from_json()
         for vacancy in vacancies:
             if vacancy.title == title:
                 vacancy.show_info()

@@ -21,10 +21,11 @@ def load_vacancies_to_json():
             json.dump([], file)
 
     hh_api = HeadHunterAPI(hh_vacancies_count)
-    sj_api = SuperJobAPI(sj_vacancies_count)
-
     hh_vacancies = VacancyAgent.pars_hh_ru(hh_api.get_vacancies(search_words))
-    sj_vacancies = VacancyAgent.pars_super_job(sj_api.get_vacancies(search_words))
+    sj_vacancies = []
+    if sj_vacancies_count != 0:
+        sj_api = SuperJobAPI(sj_vacancies_count)
+        sj_vacancies = VacancyAgent.pars_super_job(sj_api.get_vacancies(search_words))
 
     counter = 0
     for vacancy in hh_vacancies + sj_vacancies:
@@ -126,12 +127,15 @@ def show_top_n():
 
 
 if __name__ == "__main__":
-    clear_json()
-    load_vacancies_to_json()
-    show_vacancies_by_title()
-    delete_vacancy_by_title()
-    show_info_by_title()
-    get_vacancies_by_k_words()
-    get_vacancies_by_salary()
-    sort_vacancies_by_salary()
-    show_top_n()
+
+    clear_json()  #-создаём пустой файл vacancies.json для последующего наполнения данными
+    load_vacancies_to_json()  #-запрашиваем количество вакансий и сохраняем данные в файл.
+    show_vacancies_by_title()  #-выводим в консоль названия вакансий.
+#    delete_vacancy_by_title()  #-удаляем вакансию по названию.
+#    show_info_by_title()  #-выводим информацию о вакансии по её названию.
+#    get_vacancies_by_k_words()  #-выводим названия вакансий в консоль по ключевым словам.
+#    get_vacancies_by_salary()  #-выводим названия вакансий в консоль по диапазону заработной платы.
+#    sort_vacancies_by_salary()  #-сортируем вакансии по заработной плате (от большего к меньшему).
+#    show_top_n()  #-выводим в консоль информацию о первых 'n' вакансиях
+
+#    print(Vacancy.all_from_json())
